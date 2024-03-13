@@ -1,4 +1,4 @@
-module github.com/Coinmeca/grpcmodule
+module github.com/Coinmeca/grpc-module
 
 go 1.19
 
