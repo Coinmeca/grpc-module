@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package grpcmodule;
+
+option go_package = "./";
+
+service CoinmecaGrpcModule {
+  rpc AddData (GeneralRequest) returns (GeneralResponse) {}
+}
+
+message GeneralRequest {
+  oneof request {
+    TransactionRequest transaction = 1;
+    FarmRequest farm = 2;
+    ExchangeRequest exchange = 3;
+    VaultRequest vault = 4;
+  }
+}
+
+message GeneralResponse {
+  bool success = 1;
+}
+
+// ====================================
+// AddTransaction
+// ====================================
+message TransactionRequest {
+  Transaction data = 1;
+}
+
+message Transaction {
+  string Id = 1;
+  string BlockHash = 2;
+  string BlockNumber = 3;
+  string Hash = 4;
+  repeated string AccessList = 5;
+  string ChainId = 6;
+  string From = 7;
+  string To = 8;
+  string Gas = 9;
+  string GasPrice = 10;
+  string Input = 11;
+  string Cate = 12;
+}
+
+message TransactionResponse {
+  bool success = 1;
+}
+// ====================================
+// AddFarm
+// ====================================
+message FarmRequest {
+  Farm data = 1;
+}
+
+message Farm {
+  string blockNumber = 1;
+  string description = 2;
+}
+
+message FarmResponse {
+  bool success = 1;
+}
+
+// ====================================
+// AddExchange
+// ====================================
+message ExchangeRequest {
+  Exhchange data = 1;
+}
+
+message Exhchange {
+  string blockNumber = 1;
+  string description = 2;
+}
+
+message ExhchangeResponse {
+  bool success = 1;
+}
+
+
+// ====================================
+// AddVault
+// ====================================
+message VaultRequest {
+  Vault data = 1;
+}
+
+message Vault {
+  string blockNumber = 1;
+  string description = 2;
+}
+
+message VaultResponse {
+  bool success = 1;
+}
