@@ -11,9 +11,7 @@ service CoinmecaGrpcModule {
 message GeneralRequest {
   oneof request {
     TransactionRequest transaction = 1;
-    FarmRequest farm = 2;
-    ExchangeRequest exchange = 3;
-    VaultRequest vault = 4;
+    VaultRecentRequest vaultRecent = 2;
   }
 }
 
@@ -46,51 +44,29 @@ message Transaction {
 message TransactionResponse {
   bool success = 1;
 }
+
 // ====================================
-// AddFarm
+// Vault
 // ====================================
-message FarmRequest {
-  Farm data = 1;
+message VaultRecentRequest {
+  VaultRecent data = 1;
 }
 
-message Farm {
-  string blockNumber = 1;
-  string description = 2;
+message VaultRecent {
+  int64 chainId=1;
+  string tokenAddress=2;
+  string ownerAddress=3;
+  VaultTradeType type =4;
+  string time =5;
+  double amount =6;
+  double meca=7;
 }
 
-message FarmResponse {
+message VaultRecentResponse {
   bool success = 1;
 }
 
-// ====================================
-// AddExchange
-// ====================================
-message ExchangeRequest {
-  Exhchange data = 1;
-}
-
-message Exhchange {
-  string blockNumber = 1;
-  string description = 2;
-}
-
-message ExhchangeResponse {
-  bool success = 1;
-}
-
-
-// ====================================
-// AddVault
-// ====================================
-message VaultRequest {
-  Vault data = 1;
-}
-
-message Vault {
-  string blockNumber = 1;
-  string description = 2;
-}
-
-message VaultResponse {
-  bool success = 1;
+enum VaultTradeType {
+  DEPOSIT=0;
+  WITHDRAW=1;
 }
