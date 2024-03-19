@@ -11,9 +11,7 @@ service CoinmecaGrpcModule {
 message GeneralRequest {
   oneof request {
     TransactionRequest transaction = 1;
-    FarmRequest farm = 2;
-    ExchangeRequest exchange = 3;
-    VaultRequest vault = 4;
+    VaultRecentRequest farm = 2;
   }
 }
 
@@ -48,211 +46,27 @@ message TransactionResponse {
 }
 
 // ====================================
-// AddFarm
+// Vault
 // ====================================
-message FarmRequest {
-  Farm data = 1;
+message VaultRecentRequest {
+  VaultRecent data = 1;
 }
 
-message Farm {
-  int64 chainId = 1;
-  repeated FarmData main = 2;
-  repeated FarmData derive = 3;
+message VaultRecent {
+  int64 chainId=1;
+  string tokenAddress=2;
+  string ownerAddress=3;
+  VaultTradeType type =4;
+  string time =5;
+  double amount =6;
+  double meca=7;
 }
 
-message FarmData{
-  string address =1;
-  double total_staking=2;
-  double total_staking_change=3;
-  double tvl =4;
-  double tvl_change =5;
-  double total_interest=6;
-  double total_interest_change=7;
-  double staking_24h=8;
-  double staking_24h_change=9;
-  double unstaking_24h=10;
-  double unstaking_24h_change=11;
-  double interest_24h=12;
-  double interest_change_24h=13;
-  double roi=14;
-  double ror=15;
-  double staking=16;
-  double claimable =17;
-  FarmChart chart = 18;
-}
-
-message FarmChart{
-  repeated FarmChartAPR apr=1;
-  repeated FarmChartLocked locked =2;
-}
-
-message FarmChartAPR{
-  string time=1;
-  double value=2;
-}
-
-message FarmChartLocked{
-  string time=1;
-  double value=2;
-}
-
-message FarmResponse {
+message VaultRecentResponse {
   bool success = 1;
 }
 
-// ====================================
-// AddExchange
-// ====================================
-message ExchangeRequest {
-  Exhchange data = 1;
-}
-
-message Exhchange {
-  int64 chainId = 1;
-  Market market = 2;
-}
-
-message Market {
-  string address = 1;
-  string base = 2;
-  string quote = 3;
-  string name = 4;
-  string symbol = 5;
-  double price = 6;
-  double change = 7;
-  double change_rate = 8;
-  double high = 9; 
-  double low = 10;
-  repeated MarketVolume marketVolumes = 11;
-  repeated Tick asks = 12;
-  repeated Tick bids = 13;
-  MarketChart chart = 14;
-  MarketLast last = 15;
-  double tick = 16;
-}
-
-message MarketVolume {
-  double base = 1;
-  double quote =2;
-}
-
-message Tick {
-  double price = 1;
-  double balance = 2;
-}
-
-message MarketChart {
-  repeated MarketChartPrice price = 1;
-  repeated MarketChartVolume volume = 2;
-}
-
-message MarketChartPrice {
-  int64 time = 1;
-  int64 open = 2;
-  int64 high = 3;
-  int64 low = 4;
-  int64 close = 5;
-}
-
-message MarketChartVolume {
-  int64 time = 1;
-  int64 value = 2;
-  ExchangeVolumeType type = 3;
-
-}
-
-message MarketLast {
-  repeated Tick asks = 1;
-  repeated Tick bids = 2;
-  MarketChart chart = 3;
-  repeated MarketVolume volume = 4;
-}
-
-enum ExchangeVolumeType {
-  BUY = 0;
-  SELL = 1;
-}
-
-message ExhchangeResponse {
-  bool success = 1;
-}
-
-
-// ====================================
-// AddVault
-// ====================================
-message VaultRequest {
-  Vault data = 1;
-}
-
-message Vault {
-  int64 chainId = 1;
-  repeated VaultData vaults = 2;
-}
-
-message VaultData {
-  bool key = 1;
-  string address = 2;
-  string symbol = 3;
-  string name = 4;
-  int64 decimals = 5;
-  double exchange = 6;
-  double exchage_change_24h = 7;
-  double exchage_change_rate_24h = 8;
-  double tl = 9;
-  double tl_change = 10;
-  double tvl = 11;
-  double tvl_change = 12;
-  double weight = 13;
-  double weight_change = 14;
-  double deposit = 15;
-  double deposit_24h = 16;
-  double withdraw = 17;
-  double withdraw_24h = 18;
-  double per_token = 19;
-  double token_per = 20;
-  double mint = 21;
-  double burn = 22;
-  VaultChart chart = 23;
-}
-
-message VaultChart{
-  repeated VaultChartRate rate = 1;
-  repeated VaultChartLock locked = 2;
-  repeated VaultChartValue value =3;
-}
-
-message VaultChartRate{
-  string time =1;
-  double open =2;
-  double high =3;
-  double low = 4;
-  double close = 5;
-  int64 volume = 6;
-}
-
-message VaultRecent{
-  VaultVolumeType type = 1;
-  string time =2;
-  double value =3;
-  double share = 4;
-}
-
-message VaultChartLock{
-  string time = 1;
-  double value =2;
-}
-
-message VaultChartValue{
-  int64 time=1;
-  double value=2;
-}
-
-enum VaultVolumeType {
-  DEPOSIT = 0;
-  WITHDRAW = 1;
-}
-
-message VaultResponse {
-  bool success = 1;
+enum VaultTradeType {
+  DEPOSIT=0;
+  WITHDRAW=1;
 }
