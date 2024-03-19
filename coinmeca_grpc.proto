@@ -11,7 +11,7 @@ service CoinmecaGrpcModule {
 message GeneralRequest {
   oneof request {
     TransactionRequest transaction = 1;
-    VaultRecentRequest farm = 2;
+    VaultRecentRequest vaultRecent = 2;
   }
 }
 
