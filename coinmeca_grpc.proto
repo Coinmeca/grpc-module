@@ -60,6 +60,9 @@ message VaultRecent {
   string time =5;
   double amount =6;
   double meca=7;
+  double share=8;
+  string txHash=9;
+  string updateAt=10;
 }
 
 message VaultRecentResponse {
@@ -69,4 +72,21 @@ message VaultRecentResponse {
 enum VaultTradeType {
   DEPOSIT=0;
   WITHDRAW=1;
+}
+
+message GetAllFromVaultRequest {
+  GetAllFromVault data = 1;
+}
+
+message GetAllFromVault{
+  string address=1;
+  int64 decimals=2;
+  string exchange=3;
+  bool key=4;
+  string locked=5;
+  string name=6;
+  string need=7;
+  string rate=8;
+  string symbol=9;
+  string weight=10;
 }
