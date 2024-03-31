@@ -90,3 +90,12 @@ message GetAllFromVault{
   string symbol=9;
   string weight=10;
 }
+
+message ExchangeRateRequest {
+  ExchangeRate data = 1;
+}
+
+message ExchangeRate{
+  string address = 1;
+  double exchangeRate = 2;
+}
