@@ -12,6 +12,8 @@ message GeneralRequest {
   oneof request {
     TransactionRequest transaction = 1;
     VaultRecentRequest vaultRecent = 2;
+    GetAllFromVaultRequest getAllFromVault =3;
+    ExchangeRateRequest exchangeRateRequest=4;
   }
 }
 
@@ -79,16 +81,17 @@ message GetAllFromVaultRequest {
 }
 
 message GetAllFromVault{
-  string address=1;
-  int64 decimals=2;
-  string exchange=3;
-  bool key=4;
-  string locked=5;
-  string name=6;
-  string need=7;
-  string rate=8;
-  string symbol=9;
-  string weight=10;
+  int64 chainId=1;
+  string address=2;
+  int64 decimals=3;
+  string exchange=4;
+  bool key=5;
+  string locked=6;
+  string name=7;
+  string need=8;
+  string rate=9;
+  string symbol=10;
+  string weight=11;
 }
 
 message ExchangeRateRequest {
@@ -96,6 +99,11 @@ message ExchangeRateRequest {
 }
 
 message ExchangeRate{
+   int64 chainId=1;
+   repeated AddressUsdPriceSet userPrices=2;
+}
+
+message AddressUsdPriceSet{
   string address = 1;
-  double exchangeRate = 2;
+  double userPrice = 2;
 }
