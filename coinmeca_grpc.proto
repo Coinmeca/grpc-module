@@ -107,3 +107,45 @@ message AddressUsdPriceSet{
   string address = 1;
   double userPrice = 2;
 }
+
+// ====================================
+// Market
+// ====================================
+message MarketRecentRequest {
+  MarketRecent data = 1;
+}
+
+message MarketRecent {
+  int64 chainId=1;
+  string from=2;
+  string address=3;
+  MarketTradeType type =4;
+  string time =5;
+  double price =6;
+  double amount=7;
+  double quantity=8;
+  string txHash=9;
+  string updateAt=10;
+}
+
+enum MarketTradeType {
+  Sell=0;
+  Buy=1;
+  Bid=2;
+  Ask=3;
+
+}
+
+message MarketOrderbookRequest {
+  MarketOrderbook data = 1;
+}
+
+message MarketOrderbook {
+   repeated Tick asks=1;
+   repeated Tick bids=2;
+}
+
+message Tick {
+  double price=1;
+  double balance=2;
+}
