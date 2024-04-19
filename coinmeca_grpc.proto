@@ -14,6 +14,8 @@ message GeneralRequest {
     VaultRecentRequest vaultRecent = 2;
     GetAllFromVaultRequest getAllFromVault =3;
     ExchangeRateRequest exchangeRateRequest=4;
+    MarketRecentRequest marketRecent = 5;
+    MarketOrderbookRequest marketOrderbook = 6;
   }
 }
 
