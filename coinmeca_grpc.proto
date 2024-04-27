@@ -101,8 +101,8 @@ message ExchangeRateRequest {
 }
 
 message ExchangeRate{
-   int64 chainId=1;
-   repeated AddressUsdPriceSet userPrices=2;
+  int64 chainId=1;
+  repeated AddressUsdPriceSet userPrices=2;
 }
 
 message AddressUsdPriceSet{
@@ -119,8 +119,8 @@ message MarketRecentRequest {
 
 message MarketRecent {
   int64 chainId=1;
-  string from=2;
-  string address=3;
+  string owner=2;
+  string market=3;
   MarketTradeType type =4;
   string time =5;
   double price =6;
@@ -131,11 +131,10 @@ message MarketRecent {
 }
 
 enum MarketTradeType {
-  Sell=0;
-  Buy=1;
+  Buy=0;
+  Sell=1;
   Bid=2;
   Ask=3;
-
 }
 
 message MarketOrderbookRequest {
@@ -143,11 +142,11 @@ message MarketOrderbookRequest {
 }
 
 message MarketOrderbook {
-   repeated Tick asks=1;
-   repeated Tick bids=2;
+  repeated Tick asks=1;
+  repeated Tick bids=2;
 }
 
 message Tick {
-  double price=1;
-  double balance=2;
+  string price=1;
+  string balance=2;
 }
