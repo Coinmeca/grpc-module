@@ -127,7 +127,7 @@ type GeneralRequest struct {
 	//
 	//	*GeneralRequest_Transaction
 	//	*GeneralRequest_VaultRecent
-	//	*GeneralRequest_GetAllFromVault
+	//	*GeneralRequest_VaultTokenInfo
 	//	*GeneralRequest_ExchangeRateRequest
 	//	*GeneralRequest_MarketRecent
 	//	*GeneralRequest_MarketOrderbook
@@ -187,9 +187,9 @@ func (x *GeneralRequest) GetVaultRecent() *VaultRecentRequest {
 	return nil
 }
 
-func (x *GeneralRequest) GetGetAllFromVault() *GetAllFromVaultRequest {
-	if x, ok := x.GetRequest().(*GeneralRequest_GetAllFromVault); ok {
-		return x.GetAllFromVault
+func (x *GeneralRequest) GetVaultTokenInfo() *VaultTokenInfoRequest {
+	if x, ok := x.GetRequest().(*GeneralRequest_VaultTokenInfo); ok {
+		return x.VaultTokenInfo
 	}
 	return nil
 }
@@ -227,8 +227,8 @@ type GeneralRequest_VaultRecent struct {
 	VaultRecent *VaultRecentRequest `protobuf:"bytes,2,opt,name=vaultRecent,proto3,oneof"`
 }
 
-type GeneralRequest_GetAllFromVault struct {
-	GetAllFromVault *GetAllFromVaultRequest `protobuf:"bytes,3,opt,name=getAllFromVault,proto3,oneof"`
+type GeneralRequest_VaultTokenInfo struct {
+	VaultTokenInfo *VaultTokenInfoRequest `protobuf:"bytes,3,opt,name=getAllFromVault,proto3,oneof"`
 }
 
 type GeneralRequest_ExchangeRateRequest struct {
@@ -247,7 +247,7 @@ func (*GeneralRequest_Transaction) isGeneralRequest_Request() {}
 
 func (*GeneralRequest_VaultRecent) isGeneralRequest_Request() {}
 
-func (*GeneralRequest_GetAllFromVault) isGeneralRequest_Request() {}
+func (*GeneralRequest_VaultTokenInfo) isGeneralRequest_Request() {}
 
 func (*GeneralRequest_ExchangeRateRequest) isGeneralRequest_Request() {}
 
@@ -750,16 +750,16 @@ func (x *VaultRecentResponse) GetSuccess() bool {
 	return false
 }
 
-type GetAllFromVaultRequest struct {
+type VaultTokenInfoRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Data *GetAllFromVault `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Data *VaultTokenInfo `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 }
 
-func (x *GetAllFromVaultRequest) Reset() {
-	*x = GetAllFromVaultRequest{}
+func (x *VaultTokenInfoRequest) Reset() {
+	*x = VaultTokenInfoRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_coinmeca_grpc_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -767,13 +767,13 @@ func (x *GetAllFromVaultRequest) Reset() {
 	}
 }
 
-func (x *GetAllFromVaultRequest) String() string {
+func (x *VaultTokenInfoRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAllFromVaultRequest) ProtoMessage() {}
+func (*VaultTokenInfoRequest) ProtoMessage() {}
 
-func (x *GetAllFromVaultRequest) ProtoReflect() protoreflect.Message {
+func (x *VaultTokenInfoRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_coinmeca_grpc_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -785,19 +785,19 @@ func (x *GetAllFromVaultRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAllFromVaultRequest.ProtoReflect.Descriptor instead.
-func (*GetAllFromVaultRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use VaultTokenInfoRequest.ProtoReflect.Descriptor instead.
+func (*VaultTokenInfoRequest) Descriptor() ([]byte, []int) {
 	return file_coinmeca_grpc_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GetAllFromVaultRequest) GetData() *GetAllFromVault {
+func (x *VaultTokenInfoRequest) GetData() *VaultTokenInfo {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-type GetAllFromVault struct {
+type VaultTokenInfo struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -815,8 +815,8 @@ type GetAllFromVault struct {
 	Weight   string `protobuf:"bytes,11,opt,name=weight,proto3" json:"weight,omitempty"`
 }
 
-func (x *GetAllFromVault) Reset() {
-	*x = GetAllFromVault{}
+func (x *VaultTokenInfo) Reset() {
+	*x = VaultTokenInfo{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_coinmeca_grpc_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -824,13 +824,13 @@ func (x *GetAllFromVault) Reset() {
 	}
 }
 
-func (x *GetAllFromVault) String() string {
+func (x *VaultTokenInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAllFromVault) ProtoMessage() {}
+func (*VaultTokenInfo) ProtoMessage() {}
 
-func (x *GetAllFromVault) ProtoReflect() protoreflect.Message {
+func (x *VaultTokenInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_coinmeca_grpc_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -842,82 +842,82 @@ func (x *GetAllFromVault) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAllFromVault.ProtoReflect.Descriptor instead.
-func (*GetAllFromVault) Descriptor() ([]byte, []int) {
+// Deprecated: Use VaultTokenInfo.ProtoReflect.Descriptor instead.
+func (*VaultTokenInfo) Descriptor() ([]byte, []int) {
 	return file_coinmeca_grpc_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *GetAllFromVault) GetChainId() int64 {
+func (x *VaultTokenInfo) GetChainId() int64 {
 	if x != nil {
 		return x.ChainId
 	}
 	return 0
 }
 
-func (x *GetAllFromVault) GetAddress() string {
+func (x *VaultTokenInfo) GetAddress() string {
 	if x != nil {
 		return x.Address
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetDecimals() int64 {
+func (x *VaultTokenInfo) GetDecimals() int64 {
 	if x != nil {
 		return x.Decimals
 	}
 	return 0
 }
 
-func (x *GetAllFromVault) GetExchange() string {
+func (x *VaultTokenInfo) GetExchange() string {
 	if x != nil {
 		return x.Exchange
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetKey() bool {
+func (x *VaultTokenInfo) GetKey() bool {
 	if x != nil {
 		return x.Key
 	}
 	return false
 }
 
-func (x *GetAllFromVault) GetLocked() string {
+func (x *VaultTokenInfo) GetLocked() string {
 	if x != nil {
 		return x.Locked
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetName() string {
+func (x *VaultTokenInfo) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetNeed() string {
+func (x *VaultTokenInfo) GetNeed() string {
 	if x != nil {
 		return x.Need
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetRate() string {
+func (x *VaultTokenInfo) GetRate() string {
 	if x != nil {
 		return x.Rate
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetSymbol() string {
+func (x *VaultTokenInfo) GetSymbol() string {
 	if x != nil {
 		return x.Symbol
 	}
 	return ""
 }
 
-func (x *GetAllFromVault) GetWeight() string {
+func (x *VaultTokenInfo) GetWeight() string {
 	if x != nil {
 		return x.Weight
 	}
@@ -1611,8 +1611,8 @@ var file_coinmeca_grpc_proto_goTypes = []interface{}{
 	(*VaultRecentRequest)(nil),     // 7: grpcmodule.VaultRecentRequest
 	(*VaultRecent)(nil),            // 8: grpcmodule.VaultRecent
 	(*VaultRecentResponse)(nil),    // 9: grpcmodule.VaultRecentResponse
-	(*GetAllFromVaultRequest)(nil), // 10: grpcmodule.GetAllFromVaultRequest
-	(*GetAllFromVault)(nil),        // 11: grpcmodule.GetAllFromVault
+	(*VaultTokenInfoRequest)(nil), // 10: grpcmodule.VaultTokenInfoRequest
+	(*VaultTokenInfo)(nil),        // 11: grpcmodule.VaultTokenInfo
 	(*ExchangeRateRequest)(nil),    // 12: grpcmodule.ExchangeRateRequest
 	(*ExchangeRate)(nil),           // 13: grpcmodule.ExchangeRate
 	(*AddressUsdPriceSet)(nil),     // 14: grpcmodule.AddressUsdPriceSet
@@ -1625,14 +1625,14 @@ var file_coinmeca_grpc_proto_goTypes = []interface{}{
 var file_coinmeca_grpc_proto_depIdxs = []int32{
 	4,  // 0: grpcmodule.GeneralRequest.transaction:type_name -> grpcmodule.TransactionRequest
 	7,  // 1: grpcmodule.GeneralRequest.vaultRecent:type_name -> grpcmodule.VaultRecentRequest
-	10, // 2: grpcmodule.GeneralRequest.getAllFromVault:type_name -> grpcmodule.GetAllFromVaultRequest
+	10, // 2: grpcmodule.GeneralRequest.getAllFromVault:type_name -> grpcmodule.VaultTokenInfoRequest
 	12, // 3: grpcmodule.GeneralRequest.exchangeRateRequest:type_name -> grpcmodule.ExchangeRateRequest
 	15, // 4: grpcmodule.GeneralRequest.marketRecent:type_name -> grpcmodule.MarketRecentRequest
 	17, // 5: grpcmodule.GeneralRequest.marketOrderbook:type_name -> grpcmodule.MarketOrderbookRequest
 	5,  // 6: grpcmodule.TransactionRequest.data:type_name -> grpcmodule.Transaction
 	8,  // 7: grpcmodule.VaultRecentRequest.data:type_name -> grpcmodule.VaultRecent
 	0,  // 8: grpcmodule.VaultRecent.type:type_name -> grpcmodule.VaultTradeType
-	11, // 9: grpcmodule.GetAllFromVaultRequest.data:type_name -> grpcmodule.GetAllFromVault
+	11, // 9: grpcmodule.VaultTokenInfoRequest.data:type_name -> grpcmodule.VaultTokenInfo
 	13, // 10: grpcmodule.ExchangeRateRequest.data:type_name -> grpcmodule.ExchangeRate
 	14, // 11: grpcmodule.ExchangeRate.userPrices:type_name -> grpcmodule.AddressUsdPriceSet
 	16, // 12: grpcmodule.MarketRecentRequest.data:type_name -> grpcmodule.MarketRecent
@@ -1752,7 +1752,7 @@ func file_coinmeca_grpc_proto_init() {
 			}
 		}
 		file_coinmeca_grpc_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAllFromVaultRequest); i {
+			switch v := v.(*VaultTokenInfoRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1764,7 +1764,7 @@ func file_coinmeca_grpc_proto_init() {
 			}
 		}
 		file_coinmeca_grpc_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAllFromVault); i {
+			switch v := v.(*VaultTokenInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1875,7 +1875,7 @@ func file_coinmeca_grpc_proto_init() {
 	file_coinmeca_grpc_proto_msgTypes[0].OneofWrappers = []interface{}{
 		(*GeneralRequest_Transaction)(nil),
 		(*GeneralRequest_VaultRecent)(nil),
-		(*GeneralRequest_GetAllFromVault)(nil),
+		(*GeneralRequest_VaultTokenInfo)(nil),
 		(*GeneralRequest_ExchangeRateRequest)(nil),
 		(*GeneralRequest_MarketRecent)(nil),
 		(*GeneralRequest_MarketOrderbook)(nil),

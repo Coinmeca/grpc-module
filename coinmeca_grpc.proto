@@ -12,7 +12,7 @@ message GeneralRequest {
   oneof request {
     TransactionRequest transaction = 1;
     VaultRecentRequest vaultRecent = 2;
-    GetAllFromVaultRequest getAllFromVault =3;
+    VaultTokenInfoRequest getAllFromVault =3;
     ExchangeRateRequest exchangeRateRequest=4;
     MarketRecentRequest marketRecent = 5;
     MarketOrderbookRequest marketOrderbook = 6;
@@ -78,11 +78,11 @@ enum VaultTradeType {
   WITHDRAW=1;
 }
 
-message GetAllFromVaultRequest {
-  GetAllFromVault data = 1;
+message VaultTokenInfoRequest {
+  VaultTokenInfo data = 1;
 }
 
-message GetAllFromVault{
+message VaultTokenInfo{
   int64 chainId=1;
   string address=2;
   int64 decimals=3;
