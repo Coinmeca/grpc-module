@@ -10,6 +10,7 @@ coverage.txt
 *.key
 *.enc
 *.sss
+*.bazel
 *.gitmodules
 UTC--*
 */build/
