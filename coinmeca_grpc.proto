@@ -16,7 +16,7 @@ message GeneralRequest {
     ExchangeRateRequest exchangeRateRequest=4;
     MarketRecentRequest marketRecent = 5;
     MarketOrderbookRequest marketOrderbook = 6;
-    MarketRecentRequest farmRecent = 7;
+    VaultLockValueRequest vaultLockValue=7;
   }
 }
 
@@ -110,6 +110,22 @@ message AddressUsdPriceSet{
   string address = 1;
   double userPrice = 2;
 }
+
+// Vault LockValue
+message VaultLockValueRequest {
+  VaultLockValue data = 1;
+}
+
+message VaultLockValue {
+  string symbol=1;
+  string address=2;
+  int64 time=3;
+  string weight=4;
+  string locked =5;
+  string value=6;
+  string lockedValue=7;
+}
+
 
 // ====================================
 // Market
