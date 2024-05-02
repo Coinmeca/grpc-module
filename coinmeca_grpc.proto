@@ -12,10 +12,11 @@ message GeneralRequest {
   oneof request {
     TransactionRequest transaction = 1;
     VaultRecentRequest vaultRecent = 2;
-    VaultTokenInfoRequest getAllFromVault =3;
+    VaultInfoRequest vaultInfo =3;
     ExchangeRateRequest exchangeRateRequest=4;
     MarketRecentRequest marketRecent = 5;
     MarketOrderbookRequest marketOrderbook = 6;
+    MarketRecentRequest farmRecent = 7;
   }
 }
 
@@ -78,11 +79,11 @@ enum VaultTradeType {
   WITHDRAW=1;
 }
 
-message VaultTokenInfoRequest {
-  VaultTokenInfo data = 1;
+message VaultInfoRequest {
+  VaultInfo data = 1;
 }
 
-message VaultTokenInfo{
+message VaultInfo{
   int64 chainId=1;
   string address=2;
   int64 decimals=3;
@@ -149,4 +150,58 @@ message MarketOrderbook {
 message Tick {
   string price=1;
   string balance=2;
+}
+
+
+// ====================================
+// Farm
+// ====================================
+// ====================================
+// Vault
+// ====================================
+message FarmRecentRequest {
+  FarmRecent data = 1;
+}
+
+message FarmRecent {
+  int64 chainId=1;
+  string tokenAddress=2;
+  string ownerAddress=3;
+  FarmTradeType type =4;
+  string time =5;
+  double amount =6;
+  double meca=7;
+  double share=8;
+  string txHash=9;
+  string updateAt=10;
+}
+
+message FarmRecentResponse {
+  bool success = 1;
+}
+
+enum FarmTradeType {
+  STAKING=0;
+  UNSTAKE=1;
+}
+
+message FarmInfoRequest {
+  FarmInfo data = 1;
+}
+
+message FarmInfo{
+  int64 chainId=1;
+  int64 id=2;
+  string farm=3;
+  string master=4;
+  string name=5;
+  double stake=6;
+  double earn=7;
+  string start=8;
+  string period=9;
+  string duration=10;
+  string goal=11;
+  string locked=12;
+  string rewards=13;
+  string total=14;
 }
