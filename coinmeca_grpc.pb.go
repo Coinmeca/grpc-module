@@ -1743,16 +1743,9 @@ func (x *FarmRecent) GetTime() string {
 	return ""
 }
 
-func (x *FarmRecent) GetAmount() float64 {
+func (x *FarmRecent) GetValue() float64 {
 	if x != nil {
-		return x.Amount
-	}
-	return 0
-}
-
-func (x *FarmRecent) GetMeca() float64 {
-	if x != nil {
-		return x.Meca
+		return x.Value
 	}
 	return 0
 }
