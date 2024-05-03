@@ -17,6 +17,9 @@ message GeneralRequest {
     MarketRecentRequest marketRecent = 5;
     MarketOrderbookRequest marketOrderbook = 6;
     VaultLockValueRequest vaultLockValue=7;
+    MarketInfoRequest marketInfo = 8;
+    FarmInfoRequest farmInfo = 9;
+    FarmRecentRequest farmRecent = 10;
   }
 }
 
@@ -140,6 +143,10 @@ enum MarketTradeType {
 message Tick {
   string price=1;
   string balance=2;
+}
+
+message MarketInfoRequest {
+  MarketInfo data = 1;
 }
 
 message MarketOrderbook {
