@@ -18,6 +18,8 @@ message GeneralRequest {
     MarketOrderbookRequest marketOrderbook = 6;
     VaultLockValueRequest vaultLockValue=7;
     MarketInfoRequest marketInfo = 8;
+    FarmInfoRequest farmInfo = 9;
+    FarmRecentRequest farmRecent = 10;
   }
 }
 
