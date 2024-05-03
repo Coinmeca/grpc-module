@@ -168,12 +168,8 @@ message Tick {
   string balance=2;
 }
 
-
 // ====================================
 // Farm
-// ====================================
-// ====================================
-// Vault
 // ====================================
 message FarmRecentRequest {
   FarmRecent data = 1;
@@ -185,11 +181,10 @@ message FarmRecent {
   string ownerAddress=3;
   FarmTradeType type =4;
   string time =5;
-  double amount =6;
-  double meca=7;
-  double share=8;
-  string txHash=9;
-  string updateAt=10;
+  double value=6;
+  double share=7;
+  string txHash=8;
+  string updateAt=9;
 }
 
 message FarmRecentResponse {
@@ -211,8 +206,8 @@ message FarmInfo{
   string farm=3;
   string master=4;
   string name=5;
-  double stake=6;
-  double earn=7;
+  string stake=6;
+  string earn=7;
   string start=8;
   string period=9;
   string duration=10;
