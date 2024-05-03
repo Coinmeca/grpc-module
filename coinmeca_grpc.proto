@@ -159,17 +159,14 @@ message MarketVolume{
 message MarketInfo {
   int64 chainId=1;
   string address=2;
-  string  base=3;
-  string  quote=4;
+  string base=3;
+  string quote=4;
   string price =5;
   string tick =6;
-  MarketVolume volume=7;
-  repeated Tick asks=8;
-  repeated Tick bids=9;
-  string fee=10;
-  string threshold=11;
-  string lock=12;
-  string updateAt=13;
+  string fee=7;
+  string threshold=8;
+  string lock=9;
+  string updateAt=10;
 }
 
 message MarketRecentRequest {
