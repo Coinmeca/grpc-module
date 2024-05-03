@@ -59,8 +59,8 @@ message VaultRecentRequest {
 
 message VaultRecent {
   int64 chainId=1;
-  string tokenAddress=2;
-  string ownerAddress=3;
+  string token=2;
+  string user=3;
   VaultTradeType type =4;
   string time =5;
   double amount =6;
