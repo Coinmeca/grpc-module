@@ -2,6 +2,7 @@ package __
 
 import (
 	context "context"
+	"google.golang.org/grpc/credentials/insecure"
 	"log"
 	"net"
 
@@ -24,7 +25,7 @@ func NewServer(grpcCallBack GrpcCallBack) *server {
 }
 
 func InitGrpcClient(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn) {
-	conn, err := grpc.Dial(address)
+	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("Could not connect to gRPC server: %v", err)
 	}
