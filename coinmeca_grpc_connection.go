@@ -32,9 +32,9 @@ func InitGrpcClient(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn)
 	return client, conn
 }
 
-func StartGrpcServer(grpcCallBack GrpcCallBack) {
+func StartGrpcServer(grpcCallBack GrpcCallBack, port string) {
 	go func() {
-		lis, err := net.Listen("tcp", ":50051")
+		lis, err := net.Listen("tcp", port)
 		if err != nil {
 			log.Fatalf("failed to listen: %v", err)
 		}
