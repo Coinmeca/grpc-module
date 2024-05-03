@@ -98,6 +98,7 @@ message VaultInfo{
   string rate=9;
   string symbol=10;
   string weight=11;
+  string value=12;
 }
 
 message ExchangeRateRequest {
