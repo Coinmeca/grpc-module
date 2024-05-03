@@ -24,7 +24,7 @@ func NewServer(grpcCallBack GrpcCallBack) *server {
 }
 
 func InitGrpcClient(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn) {
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial(address)
 	if err != nil {
 		log.Fatalf("Could not connect to gRPC server: %v", err)
 	}
