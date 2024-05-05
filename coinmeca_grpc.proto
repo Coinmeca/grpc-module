@@ -209,7 +209,7 @@ message MarketInfo {
   string tick =6;
   string fee=7;
   string threshold=8;
-  string lock=9;
+  bool lock=9;
   string updateAt=10;
 }
 
