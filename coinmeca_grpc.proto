@@ -117,7 +117,7 @@ message AddressUsdPriceSet{
   double userPrice = 2;
 }
 
-// Vault LockValue
+// Vault ValueLocked
 message VaultValueLockedRequest {
   VaultValueLocked data = 1;
 }

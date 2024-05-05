@@ -1222,7 +1222,7 @@ func (x *AddressUsdPriceSet) GetUserPrice() float64 {
 	return 0
 }
 
-// Vault LockValue
+// Vault ValueLocked
 type VaultValueLockedRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
