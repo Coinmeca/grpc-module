@@ -123,13 +123,14 @@ message VaultLockValueRequest {
 }
 
 message VaultLockValue {
-  string symbol=1;
-  string address=2;
-  int64 time=3;
-  string weight=4;
-  string locked =5;
-  string value=6;
-  string lockedValue=7;
+  string name=1;
+  string symbol=2;
+  string address=3;
+  int64 time=4;
+  string weight=5;
+  string locked =6;
+  string value=7;
+  string valueLocked=8;
 }
 
 message VaultLastRequest{
