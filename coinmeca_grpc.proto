@@ -13,7 +13,7 @@ message GeneralRequest {
     TransactionRequest transaction = 1;
     VaultRecentRequest vaultRecent = 2;
     VaultInfoRequest vaultInfo =3;
-    ExchangeRateRequest exchangeRateRequest=4;
+    ExchangeRateRequest exchangeRate=4;
     MarketRecentRequest marketRecent = 5;
     MarketOrderbookRequest marketOrderbook = 6;
     VaultValueLockedRequest vaultValueLocked=7;
@@ -23,7 +23,7 @@ message GeneralRequest {
     VaultLastRequest vaultLast = 11;
     Vault24hInfosRequest vault24hInfos = 12;
     MarketOrderbookRecentRequest marketOrderbookRecent = 13;
-    MarketLastRequest MarketLastRequest=14;
+    MarketLastRequest MarketLast=14;
   }
 }
 
