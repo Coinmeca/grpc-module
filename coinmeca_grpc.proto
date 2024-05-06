@@ -23,7 +23,7 @@ message GeneralRequest {
     VaultLastRequest vaultLast = 11;
     Vault24hInfosRequest vault24hInfos = 12;
     MarketOrderbookRecentRequest marketOrderbookRecent = 13;
-    MarketLastRequest marketOrderbookLastRequest=14;
+    MarketLastRequest MarketLastRequest=14;
   }
 }
 
