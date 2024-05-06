@@ -23,7 +23,7 @@ message GeneralRequest {
     VaultLastRequest vaultLast = 11;
     Vault24hInfosRequest vault24hInfos = 12;
     MarketOrderbookRecentRequest marketOrderbookRecent = 13;
-    MarketOrderbookLastRequest marketOrderbookLastRequest=14;
+    MarketLastRequest marketOrderbookLastRequest=14;
   }
 }
 
@@ -246,17 +246,21 @@ message OrderbookInfo {
   MarketOrderbook orderbook=2;
 }
 
-message MarketOrderbookLastRequest {
-  MarketOrderbookLast data = 1;
+message MarketLastRequest {
+  MarketLast data = 1;
 }
 
-message MarketOrderbookLast {
+message MarketLast {
   int64 chainId=1;
   string market=2;
-  string high=3;
-  string low=4;
-  string change=5;
-  string changeRate=6;
+  string price=3;
+  string lastPrice=4;
+  string high=5;
+  string low=6;
+  string volumeBase=7;
+  string volumeQuote=8;
+  string liquidityBase=9;
+  string liquidityQuote=10;
 }
 
 
