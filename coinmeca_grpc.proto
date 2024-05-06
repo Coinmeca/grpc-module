@@ -69,10 +69,10 @@ message VaultRecent {
   string token=2;
   string user=3;
   VaultTradeType type =4;
-  string time =5;
-  double amount =6;
-  double meca=7;
-  double share=8;
+  int64 time =5;
+  string amount =6;
+  string meca=7;
+  string share=8;
   string txHash=9;
   string updateAt=10;
 }
@@ -116,7 +116,7 @@ message ExchangeRate{
 
 message AddressUsdPriceSet{
   string address = 1;
-  double userPrice = 2;
+  string userPrice = 2;
 }
 
 // Vault ValueLocked
@@ -165,13 +165,10 @@ message Vault24hInfos {
   string burnMeca24h=8;
 }
 
-
-
-
-
 // ====================================
 // Market
 // ====================================
+
 enum MarketTradeType {
   Buy=0;
   Sell=1;
@@ -224,10 +221,10 @@ message MarketRecent {
   string user=2;
   string market=3;
   MarketTradeType type =4;
-  string time =5;
-  double price =6;
-  double amount=7;
-  double quantity=8;
+  int64 time =5;
+  string price =6;
+  string amount=7;
+  string quantity=8;
   string txHash=9;
   string updateAt=10;
 }
@@ -275,9 +272,9 @@ message FarmRecent {
   string farm=2;
   string user=3;
   FarmTradeType type =4;
-  string time =5;
-  double value=6;
-  double share=7;
+  int64 time =5;
+  string value=6;
+  string share=7;
   string txHash=8;
   string updateAt=9;
 }
