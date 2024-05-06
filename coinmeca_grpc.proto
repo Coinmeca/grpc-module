@@ -22,6 +22,8 @@ message GeneralRequest {
     FarmRecentRequest farmRecent = 10;
     VaultLastRequest vaultLast = 11;
     Vault24hInfosRequest vault24hInfos = 12;
+    MarketOrderbookRecentRequest marketOrderbookRecent = 13;
+    MarketOrderbookLastRequest marketOrderbookLastRequest=14;
   }
 }
 
@@ -229,6 +231,35 @@ message MarketRecent {
   string txHash=9;
   string updateAt=10;
 }
+
+message MarketOrderbookRecentRequest {
+  MarketOrderbookRecent data = 1;
+}
+
+message MarketOrderbookRecent {
+  int64 chainId=1;
+  repeated OrderbookInfo orderbookInfo=2;
+}
+
+message OrderbookInfo {
+  string market=1;
+  MarketOrderbook orderbook=2;
+}
+
+message MarketOrderbookLastRequest {
+  MarketOrderbookLast data = 1;
+}
+
+message MarketOrderbookLast {
+  int64 chainId=1;
+  string market=2;
+  string high=3;
+  string low=4;
+  string change=5;
+  string changeRate=6;
+}
+
+
 
 // ====================================
 // Farm
