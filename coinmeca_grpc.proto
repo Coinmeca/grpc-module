@@ -142,8 +142,8 @@ message VaultLastRequest{
 message VaultLast{
   string address=1;
   int32 chainId=2;
-  string tl=3;
-  string tvl=4;
+  string locked=3;
+  string valueLocked=4;
   string deposit=5;
   string withdraw=6;
   string exchange=7;

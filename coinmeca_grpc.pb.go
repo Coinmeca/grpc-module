@@ -14,9 +14,9 @@ import (
 )
 
 const (
-	// Verify that this generated code is sufficiently up-to-date.
+	// Verify that this generated code is sufficienlockedy up-to-date.
 	_ = protoimpl.EnforceVersion(20 - protoimpl.MinVersion)
-	// Verify that runtime/protoimpl is sufficiently up-to-date.
+	// Verify that runtime/protoimpl is sufficienlockedy up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
@@ -1450,14 +1450,14 @@ type VaultLast struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Address  string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	ChainId  int32  `protobuf:"varint,2,opt,name=chainId,proto3" json:"chainId,omitempty"`
-	Tl       string `protobuf:"bytes,3,opt,name=tl,proto3" json:"tl,omitempty"`
-	Tvl      string `protobuf:"bytes,4,opt,name=tvl,proto3" json:"tvl,omitempty"`
-	Deposit  string `protobuf:"bytes,5,opt,name=deposit,proto3" json:"deposit,omitempty"`
-	Withdraw string `protobuf:"bytes,6,opt,name=withdraw,proto3" json:"withdraw,omitempty"`
-	Exchange string `protobuf:"bytes,7,opt,name=exchange,proto3" json:"exchange,omitempty"`
-	Weight   string `protobuf:"bytes,8,opt,name=weight,proto3" json:"weight,omitempty"`
+	Address				string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	ChainId				int32  `protobuf:"varint,2,opt,name=chainId,proto3" json:"chainId,omitempty"`
+	TotalLocked			string `protobuf:"bytes,3,opt,name=totalValueLocked,proto3" json:"totalValueLocked,omitempty"`
+	TotalValueLocked	string `protobuf:"bytes,4,opt,name=valueLocked,proto3" json:"valueLocked,omitempty"`
+	Deposit				string `protobuf:"bytes,5,opt,name=deposit,proto3" json:"deposit,omitempty"`
+	Withdraw			string `protobuf:"bytes,6,opt,name=withdraw,proto3" json:"withdraw,omitempty"`
+	Exchange			string `protobuf:"bytes,7,opt,name=exchange,proto3" json:"exchange,omitempty"`
+	Weight				string `protobuf:"bytes,8,opt,name=weight,proto3" json:"weight,omitempty"`
 }
 
 func (x *VaultLast) Reset() {
@@ -1506,16 +1506,16 @@ func (x *VaultLast) GetChainId() int32 {
 	return 0
 }
 
-func (x *VaultLast) GetTl() string {
+func (x *VaultLast) GetLocked() string {
 	if x != nil {
-		return x.Tl
+		return x.Locked
 	}
 	return ""
 }
 
-func (x *VaultLast) GetTvl() string {
+func (x *VaultLast) GetValueLocked() string {
 	if x != nil {
-		return x.Tvl
+		return x.ValueLocked
 	}
 	return ""
 }
