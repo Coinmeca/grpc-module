@@ -21,9 +21,8 @@ message GeneralRequest {
     FarmInfoRequest farmInfo = 9;
     FarmRecentRequest farmRecent = 10;
     VaultLastRequest vaultLast = 11;
-    Vault24hInfosRequest vault24hInfos = 12;
-    MarketOrderbookRecentRequest marketOrderbookRecent = 13;
-    MarketLastRequest MarketLast=14;
+    MarketOrderbookRecentRequest marketOrderbookRecent = 12;
+    MarketLastRequest MarketLast=13;
   }
 }
 
@@ -142,27 +141,12 @@ message VaultLastRequest{
 message VaultLast{
   string address=1;
   int32 chainId=2;
-  string locked=3;
-  string valueLocked=4;
-  string deposit=5;
-  string withdraw=6;
-  string exchange=7;
-  string weight=8;
-}
-
-message Vault24hInfosRequest {
-  Vault24hInfos data = 1;
-}
-
-message Vault24hInfos {
-  string address=1;
-  int32 chainId=2;
-  string tDeposit=3;
-  string tWithdraw=4;
-  string deposit24h=5;
-  string withdraw24h=6;
-  string mintMeca24h=7;
-  string burnMeca24h=8;
+  string exchange=3;
+  string locked=4;
+  string weight=5;
+  string valueLocked=6;
+  string deposit=7;
+  string withdraw=8;
 }
 
 // ====================================
