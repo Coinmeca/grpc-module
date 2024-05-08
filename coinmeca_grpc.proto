@@ -13,16 +13,16 @@ message GeneralRequest {
     TransactionRequest transaction = 1;
     VaultRecentRequest vaultRecent = 2;
     VaultInfoRequest vaultInfo =3;
-    ExchangeRateRequest exchangeRate=4;
-    MarketRecentRequest marketRecent = 5;
-    MarketOrderbookRequest marketOrderbook = 6;
-    VaultValueLockedRequest vaultValueLocked=7;
+    VaultChartRequest vaultChart=4;
+    VaultChartSubRequest vaultChartSub=5;
+    VaultLastRequest vaultLast = 6;
+    MarketRecentRequest marketRecent = 7;
     MarketInfoRequest marketInfo = 8;
-    FarmInfoRequest farmInfo = 9;
-    FarmRecentRequest farmRecent = 10;
-    VaultLastRequest vaultLast = 11;
-    MarketOrderbookRecentRequest marketOrderbookRecent = 12;
-    MarketLastRequest MarketLast=13;
+    MarketOrderbookRequest marketOrderbook = 9;
+    MarketChartRequest marketChart=10;
+    MarketLastRequest marketLast = 11;
+    FarmInfoRequest farmInfo = 12;
+    FarmRecentRequest farmRecent = 13;
   }
 }
 
@@ -92,46 +92,44 @@ message VaultInfoRequest {
 message VaultInfo{
   int64 chainId=1;
   string address=2;
-  int64 decimals=3;
-  string exchange=4;
-  bool key=5;
-  string locked=6;
-  string name=7;
-  string need=8;
-  string rate=9;
-  string symbol=10;
-  string weight=11;
+  bool key=3;
+  string name=4;
+  string symbol=5;
+  int64 decimals=6;
+  string exchange=7;
+  string rate=8;
+  string locked=9;
+  string weight=10;
+  string need=11;
   string value=12;
 }
 
-message ExchangeRateRequest {
-  ExchangeRate data = 1;
+message VaultChartRequest {
+  MarketChart data = 1;
 }
 
-message ExchangeRate{
+message VaultChart {
   int64 chainId=1;
-  repeated AddressUsdPriceSet userPrices=2;
+  int64 time=2;
+  string open=3;
+  string high=4;
+  string low=5;
+  string close=6;
+  string volume=7;
 }
 
-message AddressUsdPriceSet{
-  string address = 1;
-  string userPrice = 2;
+message VaultChartSubRequest {
+  VaultChartSub data = 1;
 }
 
-// Vault ValueLocked
-message VaultValueLockedRequest {
-  VaultValueLocked data = 1;
-}
-
-message VaultValueLocked {
-  string name=1;
-  string symbol=2;
-  string address=3;
-  int64 time=4;
-  string weight=5;
-  string locked =6;
-  string value=7;
-  string valueLocked=8;
+message VaultChartSub {
+  int32 chainId=1;
+  string address=2;
+  int64 time=3;
+  string weight=4;
+  string locked =5;
+  string value=6;
+  string valueLocked=7;
 }
 
 message VaultLastRequest{
@@ -139,14 +137,16 @@ message VaultLastRequest{
 }
 
 message VaultLast{
-  string address=1;
-  int32 chainId=2;
+  int32 chainId=1;
+  string address=2;
   string exchange=3;
   string locked=4;
-  string weight=5;
-  string valueLocked=6;
+  string valueLocked=5;
+  string weight=6;
   string deposit=7;
   string withdraw=8;
+  string mint=9;
+  string burn=10;
 }
 
 // ====================================
@@ -160,27 +160,8 @@ enum MarketTradeType {
   Ask=3;
 }
 
-message Tick {
-  string price=1;
-  string balance=2;
-}
-
 message MarketInfoRequest {
   MarketInfo data = 1;
-}
-
-message MarketOrderbook {
-  repeated Tick asks=1;
-  repeated Tick bids=2;
-}
-
-message MarketOrderbookRequest {
-  MarketOrderbook data = 1;
-}
-
-message MarketVolume{
-  string base=1;
-  string quote=2;
 }
 
 message MarketInfo {
@@ -193,7 +174,6 @@ message MarketInfo {
   string fee=7;
   string threshold=8;
   bool lock=9;
-  string updateAt=10;
 }
 
 message MarketRecentRequest {
@@ -202,10 +182,10 @@ message MarketRecentRequest {
 
 message MarketRecent {
   int64 chainId=1;
-  string user=2;
-  string market=3;
-  MarketTradeType type =4;
-  int64 time =5;
+  int64 time =2;
+  MarketTradeType type =3;
+  string market=4;
+  string user=5;
   string price =6;
   string amount=7;
   string quantity=8;
@@ -213,35 +193,56 @@ message MarketRecent {
   string updateAt=10;
 }
 
-message MarketOrderbookRecentRequest {
-  MarketOrderbookRecent data = 1;
+message Tick {
+  string price=1;
+  string balance=2;
 }
 
-message MarketOrderbookRecent {
-  int64 chainId=1;
-  repeated OrderbookInfo orderbookInfo=2;
+message MarketOrderbookRequest {
+  MarketOrderbook data = 1;
 }
 
-message OrderbookInfo {
-  string market=1;
-  MarketOrderbook orderbook=2;
+message MarketOrderbook {
+  repeated Tick asks=1;
+  repeated Tick bids=2;
+}
+
+message MarketLiquidity{
+  string base=1;
+  string quote=2;
+}
+
+message MarketVolume{
+  string base=1;
+  string quote=2;
 }
 
 message MarketLastRequest {
   MarketLast data = 1;
 }
 
+message MarketChartRequest {
+  MarketChart data = 1;
+}
+
+message MarketChart {
+  int64 chainId=1;
+  int64 time=2;
+  string open=3;
+  string high=4;
+  string low=5;
+  string close=6;
+  MarketVolume volume=7;
+}
+
 message MarketLast {
   int64 chainId=1;
   string market=2;
-  string price=3;
-  string lastPrice=4;
+  string price=4;
   string high=5;
   string low=6;
-  string volumeBase=7;
-  string volumeQuote=8;
-  string liquidityBase=9;
-  string liquidityQuote=10;
+  MarketVolume volume=7;
+  MarketLiquidity liquidity=8;
 }
 
 // ====================================
