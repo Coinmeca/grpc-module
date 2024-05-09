@@ -1,8 +1,8 @@
-syntax = "proto3";
+syntax="proto3";
 
 package grpcmodule;
 
-option go_package = "./";
+option go_package="./";
 
 service CoinmecaGrpcModule {
   rpc AddData (GeneralRequest) returns (GeneralResponse) {}
@@ -10,66 +10,66 @@ service CoinmecaGrpcModule {
 
 message GeneralRequest {
   oneof request {
-    TransactionRequest transaction = 1;
-    VaultRecentRequest vaultRecent = 2;
-    VaultInfoRequest vaultInfo =3;
+    TransactionRequest transaction=1;
+    VaultRecentRequest vaultRecent=2;
+    VaultInfoRequest vaultInfo=3;
     VaultChartRequest vaultChart=4;
     VaultChartSubRequest vaultChartSub=5;
-    VaultLastRequest vaultLast = 6;
-    MarketRecentRequest marketRecent = 7;
-    MarketInfoRequest marketInfo = 8;
-    MarketOrderbookRequest marketOrderbook = 9;
+    VaultLastRequest vaultLast=6;
+    MarketRecentRequest marketRecent=7;
+    MarketInfoRequest marketInfo=8;
+    MarketOrderbookRequest marketOrderbook=9;
     MarketChartRequest marketChart=10;
-    MarketLastRequest marketLast = 11;
-    FarmInfoRequest farmInfo = 12;
-    FarmRecentRequest farmRecent = 13;
+    MarketLastRequest marketLast=11;
+    FarmInfoRequest farmInfo=12;
+    FarmRecentRequest farmRecent=13;
   }
 }
 
 message GeneralResponse {
-  bool success = 1;
+  bool success=1;
 }
 
-// ====================================
+//====================================
 // AddTransaction
-// ====================================
+//====================================
 message TransactionRequest {
-  Transaction data = 1;
+  Transaction data=1;
 }
 
 message Transaction {
-  string Id = 1;
-  string BlockHash = 2;
-  string BlockNumber = 3;
-  string Hash = 4;
-  repeated string AccessList = 5;
-  string ChainId = 6;
-  string From = 7;
-  string To = 8;
-  string Gas = 9;
-  string GasPrice = 10;
-  string Input = 11;
-  string Cate = 12;
+  string Id=1;
+  string BlockHash=2;
+  string BlockNumber=3;
+  string Hash=4;
+  repeated string AccessList=5;
+  string ChainId=6;
+  string From=7;
+  string To=8;
+  string Gas=9;
+  string GasPrice=10;
+  string Input=11;
+  string Cate=12;
 }
 
 message TransactionResponse {
-  bool success = 1;
+  bool success=1;
 }
 
-// ====================================
+//====================================
 // Vault
-// ====================================
+//====================================
 message VaultRecentRequest {
-  VaultRecent data = 1;
+  VaultRecent data=1;
 }
 
 message VaultRecent {
   int64 chainId=1;
-  string token=2;
+  string address=2;
   string user=3;
-  VaultTradeType type =4;
-  int64 time =5;
-  string amount =6;
+  VaultTradeType type=4;
+  int64 time=5;
+  string amount=6;
   string meca=7;
   string share=8;
   string txHash=9;
@@ -77,7 +77,7 @@ message VaultRecent {
 }
 
 message VaultRecentResponse {
-  bool success = 1;
+  bool success=1;
 }
 
 enum VaultTradeType {
@@ -86,7 +86,7 @@ enum VaultTradeType {
 }
 
 message VaultInfoRequest {
-  VaultInfo data = 1;
+  VaultInfo data=1;
 }
 
 message VaultInfo{
@@ -105,21 +105,22 @@ message VaultInfo{
 }
 
 message VaultChartRequest {
-  MarketChart data = 1;
+  MarketChart data=1;
 }
 
 message VaultChart {
   int64 chainId=1;
-  int64 time=2;
-  string open=3;
-  string high=4;
-  string low=5;
-  string close=6;
-  string volume=7;
+  string address=2;
+  int64 time=3;
+  string open=4;
+  string high=5;
+  string low=6;
+  string close=7;
+  string volume=8;
 }
 
 message VaultChartSubRequest {
-  VaultChartSub data = 1;
+  VaultChartSub data=1;
 }
 
 message VaultChartSub {
@@ -127,13 +128,13 @@ message VaultChartSub {
   string address=2;
   int64 time=3;
   string weight=4;
-  string locked =5;
+  string locked=5;
   string value=6;
   string valueLocked=7;
 }
 
 message VaultLastRequest{
-  VaultLast data = 1;
+  VaultLast data=1;
 }
 
 message VaultLast{
@@ -149,9 +150,9 @@ message VaultLast{
   string burn=10;
 }
 
-// ====================================
+//====================================
 // Market
-// ====================================
+//====================================
 
 enum MarketTradeType {
   Buy=0;
@@ -161,7 +162,7 @@ enum MarketTradeType {
 }
 
 message MarketInfoRequest {
-  MarketInfo data = 1;
+  MarketInfo data=1;
 }
 
 message MarketInfo {
@@ -169,24 +170,24 @@ message MarketInfo {
   string address=2;
   string base=3;
   string quote=4;
-  string price =5;
-  string tick =6;
+  string price=5;
+  string tick=6;
   string fee=7;
   string threshold=8;
   bool lock=9;
 }
 
 message MarketRecentRequest {
-  MarketRecent data = 1;
+  MarketRecent data=1;
 }
 
 message MarketRecent {
   int64 chainId=1;
-  int64 time =2;
-  MarketTradeType type =3;
-  string market=4;
+  string address=2;
+  int64 time=3;
+  MarketTradeType type=4;
   string user=5;
-  string price =6;
+  string price=6;
   string amount=7;
   string quantity=8;
   string txHash=9;
@@ -199,7 +200,7 @@ message Tick {
 }
 
 message MarketOrderbookRequest {
-  MarketOrderbook data = 1;
+  MarketOrderbook data=1;
 }
 
 message MarketOrderbook {
@@ -218,26 +219,27 @@ message MarketVolume{
 }
 
 message MarketLastRequest {
-  MarketLast data = 1;
+  MarketLast data=1;
 }
 
 message MarketChartRequest {
-  MarketChart data = 1;
+  MarketChart data=1;
 }
 
 message MarketChart {
   int64 chainId=1;
-  int64 time=2;
-  string open=3;
-  string high=4;
-  string low=5;
-  string close=6;
-  MarketVolume volume=7;
+  string address=2;
+  int64 time=3;
+  string open=4;
+  string high=5;
+  string low=6;
+  string close=7;
+  MarketVolume volume=8;
 }
 
 message MarketLast {
   int64 chainId=1;
-  string market=2;
+  string address=2;
   string price=4;
   string high=5;
   string low=6;
@@ -245,19 +247,19 @@ message MarketLast {
   MarketLiquidity liquidity=8;
 }
 
-// ====================================
+//====================================
 // Farm
-// ====================================
+//====================================
 message FarmRecentRequest {
-  FarmRecent data = 1;
+  FarmRecent data=1;
 }
 
 message FarmRecent {
   int64 chainId=1;
-  string farm=2;
+  string address=2;
   string user=3;
-  FarmTradeType type =4;
-  int64 time =5;
+  FarmTradeType type=4;
+  int64 time=5;
   string value=6;
   string share=7;
   string txHash=8;
@@ -265,7 +267,7 @@ message FarmRecent {
 }
 
 message FarmRecentResponse {
-  bool success = 1;
+  bool success=1;
 }
 
 enum FarmTradeType {
@@ -274,13 +276,13 @@ enum FarmTradeType {
 }
 
 message FarmInfoRequest {
-  FarmInfo data = 1;
+  FarmInfo data=1;
 }
 
 message FarmInfo{
   int64 chainId=1;
-  int64 id=2;
-  string address=3;
+  string address=2;
+  int64 id=3;
   string master=4;
   string name=5;
   string stake=6;
