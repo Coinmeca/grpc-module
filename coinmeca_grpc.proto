@@ -260,7 +260,7 @@ message FarmRecent {
   string user=3;
   FarmTradeType type=4;
   int64 time=5;
-  string value=6;
+  string amount=6;
   string share=7;
   string txHash=8;
   string updateAt=9;
