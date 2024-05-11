@@ -90,7 +90,7 @@ message VaultInfoRequest {
 }
 
 message VaultInfo{
-  int64 chainId=1;
+  string chainId=1;
   string address=2;
   bool key=3;
   string name=4;
