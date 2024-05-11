@@ -64,7 +64,7 @@ message VaultRecentRequest {
 }
 
 message VaultRecent {
-  int64 chainId=1;
+  string chainId=1;
   string address=2;
   string user=3;
   VaultTradeType type=4;
