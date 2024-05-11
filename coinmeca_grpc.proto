@@ -273,6 +273,8 @@ message FarmRecentResponse {
 enum FarmTradeType {
   STAKING=0;
   UNSTAKE=1;
+  HARVEST=2;
+  CLAIM=3;
 }
 
 message FarmInfoRequest {
