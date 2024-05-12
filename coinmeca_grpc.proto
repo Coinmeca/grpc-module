@@ -269,9 +269,9 @@ message FarmRecentRequest {
 message FarmRecent {
   string chainId=1;
   string address=2;
-  string user=3;
+  int64 time=3;
   FarmTradeType type=4;
-  int64 time=5;
+  string user=5;
   string amount=6;
   string share=7;
   string txHash=8;
@@ -299,8 +299,8 @@ message FarmInfo{
   int64 id=3;
   string master=4;
   string name=5;
-  string stake=6;
-  string earn=7;
+  Token stake=6;
+  Token earn=7;
   string start=8;
   string period=9;
   string duration=10;
