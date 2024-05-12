@@ -38,7 +38,7 @@ func StartGrpcServer(grpcCallBack GrpcCallBack, port string) {
 	go func() {
 		lis, err := net.Listen("tcp", port)
 		if err != nil {
-			log.Fatalf("failed to listen: %v", err)
+			log.Fatalf("Failed to listen: %v", err)
 		}
 		defer lis.Close()
 
@@ -47,7 +47,7 @@ func StartGrpcServer(grpcCallBack GrpcCallBack, port string) {
 
 		log.Printf("gRPC server listening at %v", lis.Addr())
 		if err := s.Serve(lis); err != nil {
-			log.Fatalf("failed to serve: %v", err)
+			log.Fatalf("Failed to serve: %v", err)
 		}
 	}()
 }

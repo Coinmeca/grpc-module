@@ -155,10 +155,10 @@ message VaultLast{
 //====================================
 
 enum MarketTradeType {
-  Buy=0;
-  Sell=1;
-  Bid=2;
-  Ask=3;
+  BUY=0;
+  SELL=1;
+  BID=2;
+  ASK=3;
 }
 
 message MarketInfoRequest {
