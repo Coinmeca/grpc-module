@@ -61,7 +61,7 @@ message Token {
   string name=2;
   string symbol=3;
   int64 decimals=4;
-  string liquidit=5;
+  string liquidity=5;
 }
 
 //====================================
