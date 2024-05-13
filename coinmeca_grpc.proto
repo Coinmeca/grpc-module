@@ -23,6 +23,8 @@ message GeneralRequest {
     MarketLastRequest marketLast=11;
     FarmInfoRequest farmInfo=12;
     FarmRecentRequest farmRecent=13;
+    FarmOpenRequest farmOpen=14;
+    FarmOpenDeriveRequest FarmOpenDerive=15;
   }
 }
 
@@ -299,13 +301,40 @@ message FarmInfo{
   int64 id=3;
   string master=4;
   string name=5;
-  Token stake=6;
-  Token earn=7;
-  string start=8;
-  string period=9;
-  string duration=10;
-  string goal=11;
-  string locked=12;
-  string rewards=13;
-  string total=14;
+  string symbol=6;
+  int64 decimals=7;
+  Token stake=8;
+  Token earn=9;
+  string start=10;
+  string period=11;
+  string duration=12;
+  string goal=13;
+  string locked=14;
+  string rewards=15;
+  string total=16;
+}
+
+message FarmOpenRequest {
+  FarmOpen data=1;
+}
+
+message FarmOpen {
+  string chainId=1;
+  string address=2;
+  string token=3;
+  int64 id=4;
+}
+
+message FarmOpenDeriveRequest {
+  FarmOpenDerive data=1;
+}
+
+message FarmOpenDerive {
+  string chainId=1;
+  string mainAddress=2;
+  string mainToken=3;
+  int64 mainId=4;
+  string address=5;
+  string token=6;
+  int64 id=7;
 }
