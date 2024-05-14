@@ -84,7 +84,7 @@ func StartGrpcServer(grpcCallBack GrpcCallBack, port string) {
 	}()
 }
 
-func (s *server) AddData(ctx context.Context, req *GeneralRequest) (*GeneralResponse, error) {
+func (s *server) Send(ctx context.Context, req *GeneralRequest) (*GeneralResponse, error) {
 
-	return s.grpcCallBack.AddData(ctx, req)
+	return s.grpcCallBack.Send(ctx, req)
 }

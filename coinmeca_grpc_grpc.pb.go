@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CoinmecaGrpcModule_AddData_FullMethodName = "/grpcmodule.CoinmecaGrpcModule/AddData"
+	CoinmecaGrpcModule_Send_FullMethodName = "/grpcmodule.CoinmecaGrpcModule/Send"
 )
 
 // CoinmecaGrpcModuleClient is the client API for CoinmecaGrpcModule service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CoinmecaGrpcModuleClient interface {
-	AddData(ctx context.Context, in *GeneralRequest, opts ...grpc.CallOption) (*GeneralResponse, error)
+	Send(ctx context.Context, in *GeneralRequest, opts ...grpc.CallOption) (*GeneralResponse, error)
 }
 
 type coinmecaGrpcModuleClient struct {
@@ -37,9 +37,9 @@ func NewCoinmecaGrpcModuleClient(cc grpc.ClientConnInterface) CoinmecaGrpcModule
 	return &coinmecaGrpcModuleClient{cc}
 }
 
-func (c *coinmecaGrpcModuleClient) AddData(ctx context.Context, in *GeneralRequest, opts ...grpc.CallOption) (*GeneralResponse, error) {
+func (c *coinmecaGrpcModuleClient) Send(ctx context.Context, in *GeneralRequest, opts ...grpc.CallOption) (*GeneralResponse, error) {
 	out := new(GeneralResponse)
-	err := c.cc.Invoke(ctx, CoinmecaGrpcModule_AddData_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, CoinmecaGrpcModule_Send_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (c *coinmecaGrpcModuleClient) AddData(ctx context.Context, in *GeneralReque
 // All implementations must embed UnimplementedCoinmecaGrpcModuleServer
 // for forward compatibility
 type CoinmecaGrpcModuleServer interface {
-	AddData(context.Context, *GeneralRequest) (*GeneralResponse, error)
+	Send(context.Context, *GeneralRequest) (*GeneralResponse, error)
 	mustEmbedUnimplementedCoinmecaGrpcModuleServer()
 }
 
@@ -58,8 +58,8 @@ type CoinmecaGrpcModuleServer interface {
 type UnimplementedCoinmecaGrpcModuleServer struct {
 }
 
-func (UnimplementedCoinmecaGrpcModuleServer) AddData(context.Context, *GeneralRequest) (*GeneralResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddData not implemented")
+func (UnimplementedCoinmecaGrpcModuleServer) Send(context.Context, *GeneralRequest) (*GeneralResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Send not implemented")
 }
 func (UnimplementedCoinmecaGrpcModuleServer) mustEmbedUnimplementedCoinmecaGrpcModuleServer() {}
 
@@ -74,20 +74,20 @@ func RegisterCoinmecaGrpcModuleServer(s grpc.ServiceRegistrar, srv CoinmecaGrpcM
 	s.RegisterService(&CoinmecaGrpcModule_ServiceDesc, srv)
 }
 
-func _CoinmecaGrpcModule_AddData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CoinmecaGrpcModule_Send_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GeneralRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CoinmecaGrpcModuleServer).AddData(ctx, in)
+		return srv.(CoinmecaGrpcModuleServer).Send(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CoinmecaGrpcModule_AddData_FullMethodName,
+		FullMethod: CoinmecaGrpcModule_Send_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CoinmecaGrpcModuleServer).AddData(ctx, req.(*GeneralRequest))
+		return srv.(CoinmecaGrpcModuleServer).Send(ctx, req.(*GeneralRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +100,8 @@ var CoinmecaGrpcModule_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CoinmecaGrpcModuleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddData",
-			Handler:    _CoinmecaGrpcModule_AddData_Handler,
+			MethodName: "Send",
+			Handler:    _CoinmecaGrpcModule_Send_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

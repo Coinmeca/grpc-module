@@ -5,7 +5,7 @@ package grpcmodule;
 option go_package="./";
 
 service CoinmecaGrpcModule {
-  rpc AddData (GeneralRequest) returns (GeneralResponse) {}
+  rpc Send (GeneralRequest) returns (GeneralResponse) {}
 }
 
 message GeneralRequest {
