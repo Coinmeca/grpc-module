@@ -112,6 +112,8 @@ message VaultInfo{
   string weight=10;
   string need=11;
   string value=12;
+  string mint=13;
+  string burn=14;
 }
 
 message VaultChartRequest {
