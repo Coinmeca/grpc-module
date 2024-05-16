@@ -220,8 +220,10 @@ message MarketOrderbookRequest {
 }
 
 message MarketOrderbook {
-  repeated Tick asks=1;
-  repeated Tick bids=2;
+  string chainId=1;
+  string address=2;
+  repeated Tick asks=3;
+  repeated Tick bids=4;
 }
 
 message MarketLiquidity{
