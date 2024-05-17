@@ -309,12 +309,12 @@ message FarmInfo{
   int64 decimals=7;
   Token stake=8;
   Token earn=9;
-  string start=10;
-  string period=11;
-  string duration=12;
-  string goal=13;
-  string locked=14;
-  string rewards=15;
+  int64 start=10;
+  int64 period=11;
+  int64 duration=12;
+  int64 goal=13;
+  string staking=14;
+  string interest=15;
   string total=16;
 }
 
