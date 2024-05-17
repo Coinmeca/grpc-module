@@ -2,13 +2,9 @@ package __
 
 import (
 	context "context"
+	"google.golang.org/grpc/credentials/insecure"
 	"log"
 	"net"
-	"os"
-	"os/signal"
-	"syscall"
-
-	"google.golang.org/grpc/credentials/insecure"
 
 	"google.golang.org/grpc"
 )
@@ -28,8 +24,15 @@ func NewServer(grpcCallBack GrpcCallBack) *server {
 	}
 }
 
-func InitGrpcClient(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn) {
-	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+func InitGrpcClientV2(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn) {
+	var opts []grpc.DialOption
+	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	opts = append(opts, grpc.WithDefaultCallOptions(
+		grpc.MaxCallRecvMsgSize(1024*1024*16), // 16MB
+		grpc.MaxCallSendMsgSize(1024*1024*16), // 16MB
+	))
+
+	conn, err := grpc.Dial(address, opts...)
 	if err != nil {
 		log.Fatalf("Could not connect to gRPC server: %v", err)
 	}
@@ -37,33 +40,58 @@ func InitGrpcClient(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn)
 	return client, conn
 }
 
+func InitGrpcClient(address string) (CoinmecaGrpcModuleClient, *grpc.ClientConn) {
+	var opts []grpc.DialOption
+	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	opts = append(opts, grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(1024*1024*16)))
+	opts = append(opts, grpc.WithDefaultCallOptions(grpc.MaxCallSendMsgSize(1024*1024*16)))
+
+	conn, err := grpc.Dial(address, opts...)
+	if err != nil {
+		log.Fatalf("Could not connect to gRPC server: %v", err)
+	}
+	client := NewCoinmecaGrpcModuleClient(conn)
+	return client, conn
+
+	//conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	//if err != nil {
+	//	log.Fatalf("Could not connect to gRPC server: %v", err)
+	//}
+	//client := NewCoinmecaGrpcModuleClient(conn)
+	//return client, conn
+}
+
 func StartGrpcServerV2(grpcCallBack GrpcCallBack, port string) {
 	go func() {
-		lis, err := net.Listen("tcp", port)
+		listen, err := net.Listen("tcp", port)
 		if err != nil {
-			log.Printf("Failed to listen: %v", err)
-			return
+			log.Fatalf("Failed to listen : %v", err)
 		}
-		defer lis.Close()
+		defer listen.Close()
 
-		s := grpc.NewServer()
+		opts := []grpc.ServerOption{
+			grpc.UnaryInterceptor(loggingInterceptor),
+			grpc.MaxRecvMsgSize(1024 * 1024 * 16), // 16MB
+			grpc.MaxSendMsgSize(1024 * 1024 * 16), // 16MB
+		}
+
+		s := grpc.NewServer(opts...)
 		RegisterCoinmecaGrpcModuleServer(s, NewServer(grpcCallBack))
 
-		stop := make(chan os.Signal, 1)
-		signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
-
-		go func() {
-			<-stop
-			log.Println("Shutting down gRPC server...")
-			s.GracefulStop()
-			lis.Close()
-		}()
-
-		log.Printf("gRPC server listening at %v", lis.Addr())
-		if err := s.Serve(lis); err != nil {
-			log.Printf("Failed to serve: %v", err) // 종료하지 않고 오류 로깅
+		log.Printf("gRPC server listening at %v", listen.Addr())
+		if err := s.Serve(listen); err != nil {
+			log.Fatalf("Failed to serve : %v", err)
 		}
 	}()
+}
+
+func loggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+	// 요청 로깅
+	log.Printf("Received request: %v", req)
+	resp, err := handler(ctx, req)
+	// 응답 로깅
+	log.Printf("Sent response: %v", resp)
+	return resp, err
 }
 
 func StartGrpcServer(grpcCallBack GrpcCallBack, port string) {
@@ -74,6 +102,7 @@ func StartGrpcServer(grpcCallBack GrpcCallBack, port string) {
 		}
 		defer lis.Close()
 
+		//s := grpc.NewServer(grpc.UnaryInterceptor(loggingInterceptor))
 		s := grpc.NewServer()
 		RegisterCoinmecaGrpcModuleServer(s, NewServer(grpcCallBack))
 
