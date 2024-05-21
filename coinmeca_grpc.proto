@@ -24,7 +24,8 @@ message GeneralRequest {
     FarmInfoRequest farmInfo=12;
     FarmRecentRequest farmRecent=13;
     FarmOpenRequest farmOpen=14;
-    FarmOpenDeriveRequest FarmOpenDerive=15;
+    FarmOpenDeriveRequest farmOpenDerive=15;
+    TreasuryChartRequest treasuryChart=16;
   }
 }
 
@@ -341,4 +342,15 @@ message FarmOpenDerive {
   string address=5;
   string token=6;
   int64 id=7;
+}
+
+message TreasuryChartRequest {
+  TreasuryChart data=1;
+}
+
+message TreasuryChart {
+  string chainId=1;
+  string tvl=2;
+  string tv=3;
+  string tw=4;
 }
