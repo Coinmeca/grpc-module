@@ -350,7 +350,8 @@ message TreasuryChartRequest {
 
 message TreasuryChart {
   string chainId=1;
-  string tvl=2;
-  string tv=3;
-  string tw=4;
+  int64 time=2;
+  string tvl=3;
+  string tv=4;
+  string tw=5;
 }
