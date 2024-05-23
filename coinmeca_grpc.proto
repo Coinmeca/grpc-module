@@ -11,21 +11,22 @@ service CoinmecaGrpcModule {
 message GeneralRequest {
   oneof request {
     TransactionRequest transaction=1;
-    VaultRecentRequest vaultRecent=2;
-    VaultInfoRequest vaultInfo=3;
+    VaultInfoRequest vaultInfo=2;
+    VaultRecentRequest vaultRecent=3;
     VaultChartRequest vaultChart=4;
     VaultChartSubRequest vaultChartSub=5;
     VaultLastRequest vaultLast=6;
-    MarketRecentRequest marketRecent=7;
-    MarketInfoRequest marketInfo=8;
+    MarketInfoRequest marketInfo=7;
+    MarketRecentRequest marketRecent=8;
     MarketOrderbookRequest marketOrderbook=9;
     MarketChartRequest marketChart=10;
     MarketLastRequest marketLast=11;
     FarmInfoRequest farmInfo=12;
     FarmRecentRequest farmRecent=13;
-    FarmOpenRequest farmOpen=14;
-    FarmOpenDeriveRequest farmOpenDerive=15;
-    TreasuryChartRequest treasuryChart=16;
+    FarmChartRequest farmChart=14;
+    FarmOpenRequest farmOpen=15;
+    FarmOpenDeriveRequest farmOpenDerive=16;
+    TreasuryChartRequest treasuryChart=17;
   }
 }
 
@@ -319,6 +320,30 @@ message FarmInfo{
   string total=16;
 }
 
+message FarmChartRequest {
+  FarmChart data=1;
+}
+
+message FarmChart {
+  string chainId=1;
+  string address=2;
+  int64 time=3;
+  FarmChartVolume staking=4;
+  FarmChartVolume interest=5;
+  FarmChartValue value=6;
+  string apr=7;
+}
+
+message FarmChartVolume{
+  string amount=1;
+  string value=2;
+}
+
+message FarmChartValue{
+  string stake=1;
+  string earn=2;
+}
+
 message FarmOpenRequest {
   FarmOpen data=1;
 }
@@ -344,6 +369,9 @@ message FarmOpenDerive {
   int64 id=7;
 }
 
+//====================================
+// Treasury
+//====================================
 message TreasuryChartRequest {
   TreasuryChart data=1;
 }
