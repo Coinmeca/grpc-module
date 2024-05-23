@@ -315,7 +315,7 @@ message FarmInfo{
   int64 period=11;
   int64 duration=12;
   int64 goal=13;
-  string staking=14;
+  string staked=14;
   string interest=15;
   string total=16;
 }
@@ -328,7 +328,7 @@ message FarmChart {
   string chainId=1;
   string address=2;
   int64 time=3;
-  FarmChartVolume staking=4;
+  FarmChartVolume staked=4;
   FarmChartVolume interest=5;
   FarmChartValue value=6;
   string apr=7;
