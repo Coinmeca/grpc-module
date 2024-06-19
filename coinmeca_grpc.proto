@@ -318,7 +318,8 @@ message FarmInfo{
   int64 goal=13;
   string staked=14;
   string interest=15;
-  string total=16;
+  string apr=16;
+  string total=17;
 }
 
 message FarmChartRequest {
