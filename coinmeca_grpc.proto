@@ -108,14 +108,15 @@ message VaultInfo{
   string name=4;
   string symbol=5;
   int64 decimals=6;
-  string exchange=7;
-  string rate=8;
+  string rate=7;
+  string ratio=8;
   string locked=9;
   string weight=10;
   string need=11;
-  string value=12;
-  string mint=13;
-  string burn=14;
+  string require=12;
+  string value=13;
+  string mint=14;
+  string burn=15;
 }
 
 message VaultChartRequest {
@@ -154,7 +155,7 @@ message VaultLastRequest{
 message VaultLast{
   string chainId=1;
   string address=2;
-  string exchange=3;
+  string rate=3;
   string locked=4;
   string valueLocked=5;
   string weight=6;
