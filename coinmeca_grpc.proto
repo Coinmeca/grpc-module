@@ -387,6 +387,7 @@ message FarmLast{
   string unStaking24hChange=6;
   string interest=7;
   string interest24h=8;
+  string interest24hChange=9;
 }
 
 //====================================
