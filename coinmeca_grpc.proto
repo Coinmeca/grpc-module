@@ -26,7 +26,8 @@ message GeneralRequest {
     FarmChartRequest farmChart=14;
     FarmOpenRequest farmOpen=15;
     FarmOpenDeriveRequest farmOpenDerive=16;
-    TreasuryChartRequest treasuryChart=17;
+    FarmLastRequest farmLast=17;
+    TreasuryChartRequest treasuryChart=18;
   }
 }
 
@@ -371,6 +372,21 @@ message FarmOpenDerive {
   string address=5;
   string token=6;
   int64 id=7;
+}
+
+message FarmLastRequest {
+  FarmLast data=1;
+}
+
+message FarmLast{
+  string chainId=1;
+  string address=2;
+  string staking24h=3;
+  string staking24hChange=4;
+  string unStaking24h=5;
+  string unStaking24hChange=6;
+  string interest=7;
+  string interest24h=8;
 }
 
 //====================================
