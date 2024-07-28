@@ -337,6 +337,7 @@ message FarmChart {
   FarmChartVolume interest=5;
   FarmChartValue value=6;
   string apr=7;
+  string total=8;
 }
 
 message FarmChartVolume{
@@ -381,13 +382,18 @@ message FarmLastRequest {
 message FarmLast{
   string chainId=1;
   string address=2;
-  string staking24h=3;
-  string staking24hChange=4;
-  string unStaking24h=5;
-  string unStaking24hChange=6;
-  string interest=7;
-  string interest24h=8;
-  string interest24hChange=9;
+  string staked=3;
+  string stakedChange = 4;
+  string valueStaked = 5;
+  string valueStakedChange = 6;
+  string staking24h=7;
+  string staking24hChange=8;
+  string unStaking24h=9;
+  string unStaking24hChange=10;
+  string interest=11;
+  string interestChange=12;
+  string interest24h=13;
+  string interest24hChange=14;
 }
 
 //====================================
