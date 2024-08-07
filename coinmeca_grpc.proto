@@ -161,10 +161,10 @@ message VaultLast{
   string locked=4;
   string valueLocked=5;
   string weight=6;
-  string deposit24h=7;
-  string deposit24hChange=8;
-  string withdraw24h=9;
-  string withdraw24hChange=10;
+  string deposit=7;
+  string deposit24h=8;
+  string withdraw=9;
+  string withdraw24h=10;
   string mint=11;
   string burn=12;
 }
