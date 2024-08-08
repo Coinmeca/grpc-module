@@ -310,20 +310,21 @@ message FarmInfo{
   string chainId=1;
   string address=2;
   int64 id=3;
-  string master=4;
-  string name=5;
-  string symbol=6;
-  int64 decimals=7;
-  Token stake=8;
-  Token earn=9;
-  int64 start=10;
-  int64 period=11;
-  int64 duration=12;
-  int64 goal=13;
-  string staked=14;
-  string interest=15;
-  string apr=16;
+  string main=4;
+  string master=5;
+  string name=6;
+  string symbol=7;
+  int64 decimals=8;
+  Token stake=9;
+  Token earn=10;
+  int64 start=11;
+  int64 period=12;
+  int64 duration=13;
+  int64 goal=14;
+  string staked=15;
+  string interest=16;
   string total=17;
+  string apr=18;
 }
 
 message FarmChartRequest {
