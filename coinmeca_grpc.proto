@@ -325,6 +325,7 @@ message FarmInfo{
   string interest=16;
   string total=17;
   string apr=18;
+  string claimable=19;
 }
 
 message FarmChartRequest {
