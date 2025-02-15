@@ -2,9 +2,10 @@ package __
 
 import (
 	context "context"
-	"google.golang.org/grpc/credentials/insecure"
 	"log"
 	"net"
+
+	"google.golang.org/grpc/credentials/insecure"
 
 	"google.golang.org/grpc"
 )
@@ -86,10 +87,10 @@ func StartGrpcServerV2(grpcCallBack GrpcCallBack, port string) {
 }
 
 func loggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
-	// 요청 로깅
+	// request log
 	log.Printf("Received request: %v", req)
 	resp, err := handler(ctx, req)
-	// 응답 로깅
+	// answer log
 	log.Printf("Sent response: %v", resp)
 	return resp, err
 }
