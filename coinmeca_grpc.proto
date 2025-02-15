@@ -286,9 +286,10 @@ message FarmRecent {
   FarmTradeType type=4;
   string user=5;
   string amount=6;
-  string share=7;
-  string txHash=8;
-  string updateAt=9;
+  string value=7;
+  string share=8;
+  string txHash=9;
+  string updateAt=10;
 }
 
 message FarmRecentResponse {
